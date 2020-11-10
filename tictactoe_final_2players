@@ -21,6 +21,7 @@ def choice(c):
         print('Enter only x/o ')
         ch=input()
         choice(ch)     
+    # print('The computer starts first')
 
 def game(yt,ct1,ct2):
     global i
@@ -29,7 +30,7 @@ def game(yt,ct1,ct2):
     count1=ct1
     count2=ct2
     i=yt
-    print('''Which position ?: ''')
+    print('''Which position do you wanna start first?: ''')
     while i<9:
         if count1==count2:
             print('Player 1\'s turn')
@@ -74,7 +75,7 @@ def game(yt,ct1,ct2):
                     ct2=count2
                     tictactoe(mov)
     if i>8:
-        print('It/'s a Draw')
+        print('It\'s a Draw')
         sys.exit()
 
 
@@ -116,5 +117,6 @@ choice(ch)
 count1=0
 count2=0
 it=0
-print('''Enter only top-l,top-m,top-r,mid-l,mid-m,mid-r,low-l,low-m and low-r''')
+print('Enter only top-l,top-m,top-r,mid-l,mid-m,mid-r,low-l,low-m and low-r''')
 game(it,count1,count2)
+
