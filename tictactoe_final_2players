@@ -1,0 +1,120 @@
+import sys
+
+def tictactoe(moves):
+    global mov
+    mov=moves
+    print(mov['top-l'].rjust(37)+ '|'+ mov['top-m'].rjust(2) + ' ' + '|'.ljust(1) + mov['top-r'])
+    print(('--+---+--').rjust(44))
+    print(mov['mid-l'].rjust(37)+ '|'+ mov['mid-m'].rjust(2) + ' ' + '|'.ljust(1) + mov['mid-r'])
+    print(('--+---+--').rjust(44))
+    print(mov['low-l'].rjust(37)+ '|'+ mov['low-m'].rjust(2) + ' ' + '|'.ljust(1) + mov['low-r'])
+
+def choice(c):
+    global c1
+    global c2
+    c1=c
+    if c1=='x':
+        c2='o'
+    elif c1=='o':
+        c2='x'
+    else:
+        print('Enter only x/o ')
+        ch=input()
+        choice(ch)     
+
+def game(yt,ct1,ct2):
+    global i
+    global count1
+    global count2
+    count1=ct1
+    count2=ct2
+    i=yt
+    print('''Which position ?: ''')
+    while i<9:
+        if count1==count2:
+            print('Player 1\'s turn')
+            i3=input()
+            if i3 not in mov:
+                print('Enter a valid position ')
+                yt=0
+                i ,yt = yt , i
+                game(yt,count1,count2)
+            else:
+                if mov[i3]=='':
+                    count1+=1
+                    ct1+=1
+                    i+=1
+                    mov[i3]=c1
+                    p1='Player 1'
+                    tictactoe(mov)
+                    win_lose(p1)
+                else:
+                    print(mov[i4] +' space already filled\nenter a new position')
+                    ct1=count1
+                    tictactoe(mov)
+        elif count1>count2:
+            print('Player 2\'s turn')
+            i4=input()
+            if i4 not in mov:
+                print('Enter a valid position ')
+                yt=0
+                i ,yt = yt , i
+                game(yt,count1,count2)
+            else:
+                if mov[i4]=='':
+                    count2+=1
+                    ct2+=1
+                    i+=1
+                    mov[i4]=c2
+                    p2='Player 2'
+                    tictactoe(mov)
+                    win_lose(p2)
+                else:
+                    print(mov[i4] +' space already filled\nenter a new position')
+                    ct2=count2
+                    tictactoe(mov)
+    if i>8:
+        print('It/'s a Draw')
+        sys.exit()
+
+
+def win_lose(player):
+    if i>=5:
+        if mov['top-l']==mov['top-m']==mov['top-r']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['mid-l']==mov['mid-m']==mov['mid-r']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['low-l']==mov['low-m']==mov['low-r']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['top-l']==mov['mid-l']==mov['low-l']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['top-m']==mov['mid-m']==mov['low-m']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['top-r']==mov['mid-r']==mov['low-r']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['top-r']==mov['mid-m']==mov['low-l']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+        elif mov['top-l']==mov['mid-m']==mov['low-r']!='':
+            print(player +' wins in ' + str(i) + ' moves')
+            sys.exit()
+       
+move={'top-l':'','top-m':'','top-r':'',
+      'mid-l':'','mid-m':'','mid-r':'',
+      'low-l':'','low-m':'','low-r':''}
+print('WELCOME'.center(80,'='))
+tictactoe(move)
+print('Do you wanna use x or o ? ')
+ch=input()
+choice(ch)
+count1=0
+count2=0
+it=0
+print('''Enter only top-l,top-m,top-r,mid-l,mid-m,mid-r,low-l,low-m and low-r''')
+game(it,count1,count2)
